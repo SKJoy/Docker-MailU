@@ -34,7 +34,7 @@
 - ### Reverse proxy: `NginX`
 	- **SSL** is to be handled by the reverse proxy
 	- Forward **HTTP** port to internal `MailU` container
-	- Configure **HTTP** proxy header to detect real IP for **CloudFlare**
+	- Configure **HTTP** proxy header to detect real IP for **CloudFlare**: `real_ip_header CF-Connecting-IP;` in `/` location block
 - Start the Docker project: `docker compose up -d`
 - **Access**: The **MailU** instance should be accessible through the web browser as configureed with reverse proxy or exposed directly
 
