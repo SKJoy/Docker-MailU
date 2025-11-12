@@ -63,7 +63,7 @@
 
 ## Task
 - Clear log file: `bash Log-Clear.sh`; possibly with a monthly **CronJob**
-- Clean up everything (doesn't remove any mail server data): `bash Clean-up.sh`; possibly with a monthly **CronJob**
+- Clean up everything (doesn't remove any mail server data): `bash Clean.sh`; possibly with a monthly **CronJob**
 - Backup: `bash Backup.sh`; Backup file should be available inside the `Backup` folder
 - ### Restore
 	- Ensure there is no other file or folder in the restore path `/path/to/mailu` (`Backup` folder may exist)
