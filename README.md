@@ -93,6 +93,7 @@
 	- Type: `CNAME`; Name: `autodiscover`; Value: `autoconfig.domain.tld`; Proxy: `Yes`
 
 ## Documentation
-- [Official website](https://mailu.io)
-- [Repository](https://github.com/Mailu/Mailu)
+- ### MailU
+	- [Official website](https://mailu.io)
+	- [Repository](https://github.com/Mailu/Mailu)
 
