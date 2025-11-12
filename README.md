@@ -42,7 +42,7 @@
 		- `http://email.domain.tld`
 		- `https://email.domain.tld:[MAILU_PORT_HTTPS]`
 		- `http://email.domain.tld:[MAILU_PORT_HTTP]`
-	- Use default administrator user credential as configured above
+	- Use default **administrator** user credential as configured in `.env` file
 
 ## **SSL** certificate management behind reverse proxy
 - ### Use existing certificate
