@@ -6,7 +6,7 @@
 	- #### Modify `.env` file accordingly
 		- `DOCKER_NETWORK_PREFIX`: Ensure the **Docker network** doesn't conflict with any existing
 		- `HOST_NAME`: Mail server `hostname`, an `FQDN`; also responds with **SSL**
-		- ##### Default `administrator` credential
+		- ##### Default `administrator` user credential
 			- ###### **Email**; usually `admin@internal.system`
 				- `MAILU_ADMIN_USER`: **Username** part
 				- `MAILU_ADMIN_DOMAIN`: **Domain** part
@@ -36,11 +36,13 @@
 	- Forward **HTTP** port to internal `MailU` container
 	- Configure **HTTP** proxy header to detect real IP for **CloudFlare**: `real_ip_header CF-Connecting-IP;` in `/` location block
 - Start the Docker project: `docker compose up -d`
-- **Access**: The **MailU** instance should be accessible through the web browser as configureed with reverse proxy or exposed directly
-	- `https://email.domain.tld`
-	- `http://email.domain.tld`
-	- `https://email.domain.tld:[MAILU_PORT_HTTPS]`
-	- `http://email.domain.tld:[MAILU_PORT_HTTP]`
+- The **MailU** instance should be accessible through the web browser as configureed with reverse proxy or exposed directly
+	- #### URL
+		- `https://email.domain.tld`
+		- `http://email.domain.tld`
+		- `https://email.domain.tld:[MAILU_PORT_HTTPS]`
+		- `http://email.domain.tld:[MAILU_PORT_HTTP]`
+	- Use default administrator user credential as configured above
 
 ## **SSL** certificate management behind reverse proxy
 - ### Use existing certificate
