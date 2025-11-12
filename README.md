@@ -1,5 +1,4 @@
-# Docker-MailU
-**MailU** mail server with **Docker**
+# **MailU** mail server with **Docker**
 
 ## Setup
 - ### **MailU**
