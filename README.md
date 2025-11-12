@@ -2,6 +2,7 @@
 
 ## Setup
 - ### **MailU**
+	- Clone **repository** on the server: `git clone https://github.com/SKJoy/Docker-MailU.git`
 	- Copy `.sample.env` file to `.env`
 	- #### Modify `.env` file accordingly
 		- `DOCKER_NETWORK_PREFIX`: Ensure the **Docker network** doesn't conflict with any existing
