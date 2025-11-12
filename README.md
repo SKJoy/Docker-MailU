@@ -92,8 +92,15 @@
 	- Type: `CNAME`; Name: `autoconfig`; Value: `mail.domain.tld`; Proxy: `Yes`
 	- Type: `CNAME`; Name: `autodiscover`; Value: `autoconfig.domain.tld`; Proxy: `Yes`
 
+## **How to** check functionality
+- Check for **DNS** configuration with **MX ToolBox**
+- Check for **deliverability** with **Mail Tester**
+- Send test email to `check-auth2@verifier.port25.com` and `ping@tools.mxtoolbox.com` addresses and wait for reply with **configuration** check
+
 ## Documentation
 - ### MailU
 	- [Official website](https://mailu.io)
 	- [Repository](https://github.com/Mailu/Mailu)
+- [MX ToolBox](https://mxtoolbox.com/)
+- [Mail Tester](https://www.mail-tester.com)
 
