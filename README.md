@@ -23,9 +23,9 @@
 		- `MAILU_PORT_HTTPS`: Should be `443` if exposed to the internet directly without a reverse proxy
 		- `MAILU_DAILY_MAX_MESSAGE_PER_USER`: Send out threshold
 		- `MAILU_RELAY_NETWORK`: Carefully check the `MailU subnet` doesn't fall into any `public IP` range
-		- `MAILU_VERSION`: The specific version to install; check official website
+		- `MAILU_VERSION`: Specific version to install; check official website
 		- `MAILU_ROUNDCUBE_PLUGINS`: List of plugins to be available with the `RoundCube` email client
-		- `MAILU_SERVICE_IP`: Use `0.0.0.0` to expose services to internet
+		- `MAILU_SERVICE_IP`: Use `0.0.0.0` to expose email services to internet
 		- `MAILU_REAL_IP_FROM`: Addresses to consider as proxy
 		- `MAILU_REAL_IP_HEADER`: Detect real IP from this header with proxy
 		- ##### `MAILU_RELAY_HOST`: Remote mail server to relay all emails through
@@ -72,6 +72,24 @@
 ## Caution
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
 - `SSO`/`Identity server` configuration (**Keycloak**, **Authentik**, etc) is cumbersome due to lack of built in support (needs to be configured through **HTTP** reverse proxy)
+
+## DNS configuration
+- Assuming **email domain** is `domain.tld`
+- Basic
+	- Type: `A`; Name: `mail`; Value: **Host public IP**; Proxy: `No` (can use `CNAME` with `target hostname` alternatively)
+	- Type: `MX`; Name: `@`; Value: `mail.domain.tld` (for incoming email)
+- Security
+	- Type: `TXT`; Name: `@`; Value: `v=spf1 +mx +a -all` (tightest)
+	- Type: `TXT`; Name: `default._domainkey`; Value: `v=DKIM1; k=rsa; p=[GET FROM MAILU DOMAIN ADMIN INTERFACE];`
+	- Type: `TXT`; Name: `_dmarc`; Value: `v=DMARC1; p=reject;` (tightest)
+- **MailU** web interface
+	- Type: `CNAME`; Name: `email`; Value: `mail.domain.tld`; Proxy: `Yes`
+- **Email client** automatic configuration
+	- Type: `CNAME`; Name: `imap`; Value: `mail.domain.tld`; Proxy: `No`
+	- Type: `CNAME`; Name: `pop`; Value: `mail.domain.tld`; Proxy: `No`
+	- Type: `CNAME`; Name: `smtp`; Value: `mail.domain.tld`; Proxy: `No`
+	- Type: `CNAME`; Name: `autoconfig`; Value: `mail.domain.tld`; Proxy: `Yes`
+	- Type: `CNAME`; Name: `autodiscover`; Value: `autoconfig.domain.tld`; Proxy: `Yes`
 
 ## Documentation
 - [Official website](https://mailu.io)
