@@ -37,6 +37,10 @@
 	- Configure **HTTP** proxy header to detect real IP for **CloudFlare**: `real_ip_header CF-Connecting-IP;` in `/` location block
 - Start the Docker project: `docker compose up -d`
 - **Access**: The **MailU** instance should be accessible through the web browser as configureed with reverse proxy or exposed directly
+	- `https://email.domain.tld`
+	- `http://email.domain.tld`
+	- `https://email.domain.tld:[MAILU_PORT_HTTPS]`
+	- `http://email.domain.tld:[MAILU_PORT_HTTP]`
 
 ## **SSL** certificate management behind reverse proxy
 - ### Use existing certificate
@@ -67,5 +71,6 @@
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
 
 ## Documentation
-- Official website: `https://mailu.io`
-- Repository: `https://github.com/Mailu/Mailu`
+- [Official website](https://mailu.io)
+- [Repository](https://github.com/Mailu/Mailu)
+
