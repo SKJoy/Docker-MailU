@@ -1,5 +1,5 @@
 # **MailU** mail server with **Docker**
-**MailU** is a complete mail server that you can deploy with Docker as containers. This makes it highly portable and manageable. **MailU** mail server comes with all features and functionality you can expect from any proven full grade mail server. You can deploy **MailU** on any platform/**OS** that suports Docker containers.
+**MailU** is a complete **mail server** that you can deploy with **Docker** as containers. This makes it highly **portable** and manageable. **MailU** comes with all features and functionality you can expect from any proven full grade mail server. You can deploy **MailU** on any platform/**OS** that suports Docker containers.
 
 ## Setup
 - ### **MailU**
