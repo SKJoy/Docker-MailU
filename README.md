@@ -71,6 +71,7 @@
 
 ## Caution
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
+- `SSO`/`Identity server` configuration (**Keycloak**, **Authentik**, etc) is cumbersome due to lack of built in support (needs to be configured through **HTTP** reverse proxy)
 
 ## Documentation
 - [Official website](https://mailu.io)
