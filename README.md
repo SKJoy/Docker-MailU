@@ -31,10 +31,11 @@
 		- ##### `MAILU_RELAY_HOST`: Remote mail server to relay all emails through
 			- `MAILU_RELAY_USER`: Remote relay mail server username
 			- `MAILU_RELAY_PASSWORD`: Remote relay mail server password
-- ### Reverse proxy: `NginX`
+- ### Reverse proxy
 	- **SSL** is to be handled by the reverse proxy
 	- Forward **HTTP** port to internal `MailU` container
-	- Configure **HTTP** proxy header to detect real IP for **CloudFlare**: `real_ip_header CF-Connecting-IP;` in `/` location block
+	- #### Configure **HTTP** proxy header to detect real IP for **CloudFlare**
+		- **NginX**: `real_ip_header CF-Connecting-IP;` in `/` location block
 - Start the Docker project: `docker compose up -d`
 - The **MailU** instance should be accessible through the web browser as configureed with reverse proxy or exposed directly
 	- #### URL
@@ -73,7 +74,7 @@
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
 - `SSO`/`Identity server` configuration (**Keycloak**, **Authentik**, etc) is cumbersome due to lack of built in support (needs to be configured through **HTTP** reverse proxy)
 
-## DNS configuration
+## **DNS** configuration
 - Assuming **email domain** is `domain.tld`
 - Basic
 	- Type: `A`; Name: `mail`; Value: **Host public IP**; Proxy: `No` (can use `CNAME` with `target hostname` alternatively)
