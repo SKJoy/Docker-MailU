@@ -5,7 +5,7 @@
 	- Clone **repository** on the server: `git clone https://github.com/SKJoy/Docker-MailU.git`
 	- #### Copy `.sample.env` file to `.env` and modify accordingly
 		- `DOCKER_NETWORK_PREFIX`: Ensure the **Docker network** doesn't conflict with any existing
-		- `HOST_NAME`: Mail server `hostname`, an `FQDN`; also responds with **SSL**
+		- `HOST_NAME`: Mail server `hostname`, an **FQDN**; also responds with **SSL**
 		- ##### Default `administrator` user credential
 			- ###### **Email**; usually `admin@internal.system`
 				- `MAILU_ADMIN_USER`: **Username** part
@@ -73,6 +73,7 @@
 ## Caution
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
 - `SSO`/`Identity server` configuration (**Keycloak**, **Authentik**, etc) is cumbersome due to lack of built in support (needs to be configured through **HTTP** reverse proxy)
+- Use mail server **hostname** (`mail-server.domain.tld`) instead of `mail.domain.tld` if SSL connection fails
 
 ## **DNS** configuration
 - Assuming **email domain** is `domain.tld`
