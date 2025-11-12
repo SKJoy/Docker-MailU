@@ -12,6 +12,7 @@
 				- `MAILU_ADMIN_DOMAIN`: **Domain** part
 			- `DEFAULT_PASSWORD`: Default password
 		- `MAILU_HOSTNAMES`: Additional hostnames; usually all the `mail.domain.tld`
+		- `MAILU_SECRET_KEY`: Unique `16` byte key per deployment
 		- `MAILU_API_TOKEN`: Unique `32` byte token to use with `MailU` API
 		- `MAILU_SITE_NAME`: Name of the website to show
 		- `MAILU_SITE_URL`: URL to any website
