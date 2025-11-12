@@ -65,3 +65,7 @@
 
 ## Caution
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
+
+## Documentation
+- Official website: `https://mailu.io`
+- Repository: `https://github.com/Mailu/Mailu`
