@@ -104,7 +104,10 @@
 - ### **MailU**
 	- [Official website](https://mailu.io)
 	- [Repository](https://github.com/Mailu/Mailu)
-- [MX ToolBox](https://mxtoolbox.com/)
-- [Mail Tester](https://www.mail-tester.com)
-- [CheckTLS](https://www.checktls.com/TestReceiver)
+	- [Configuration reference](https://mailu.io/2024.06/configuration.html)
+- Diagnostics
+	- [MX ToolBox](https://mxtoolbox.com/)
+	- [Mail Tester](https://www.mail-tester.com)
+	- [CheckTLS](https://www.checktls.com/TestReceiver)
+- [Install Docker engine](https://docs.docker.com/engine/install)
 
