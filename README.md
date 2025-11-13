@@ -109,6 +109,6 @@
 	- [MX ToolBox](https://mxtoolbox.com/): **DNS** configuration checker
 	- [Mail Tester](https://www.mail-tester.com): **Deliverability** tester
 	- [CheckTLS](https://www.checktls.com/TestReceiver): **SSL**/**TLS** connection verifier
-- Docker
+- **Docker**
 	- [Install](https://docs.docker.com/engine/install) **Docker** engine
 
