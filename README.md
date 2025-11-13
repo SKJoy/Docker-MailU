@@ -106,9 +106,9 @@
 	- [Repository](https://github.com/Mailu/Mailu)
 	- [Configuration reference](https://mailu.io/2024.06/configuration.html)
 - Diagnostics
-	- [MX ToolBox](https://mxtoolbox.com/)
-	- [Mail Tester](https://www.mail-tester.com)
-	- [CheckTLS](https://www.checktls.com/TestReceiver)
+	- [MX ToolBox](https://mxtoolbox.com/): DNS configuration checker
+	- [Mail Tester](https://www.mail-tester.com): Deliverability tester
+	- [CheckTLS](https://www.checktls.com/TestReceiver): SSL/TLS connection verifier
 - Docker
 	- [Install](https://docs.docker.com/engine/install)
 
