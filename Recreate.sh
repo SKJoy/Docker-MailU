@@ -10,7 +10,7 @@ cd ${THIS_SCRIPT_PATH};
 
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
 docker compose down
-docker comppose up -d
+docker compose up -d
 echo "${CURRENT_DATE} ${CURRENT_TIME} Docker project recreated" >> ${THIS_SCRIPT_PATH}Action.log
 
 cat <<CONTENT
