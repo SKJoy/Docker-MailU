@@ -11,7 +11,7 @@ cd ${THIS_SCRIPT_PATH};
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
 FILE_SIZE=0
 truncate -s${FILE_SIZE} *.log
-echo "${CURRENT_DATE} ${CURRENT_TIME} log files truncated" >> ${THIS_SCRIPT_PATH}Action.log
+echo "${CURRENT_DATE} ${CURRENT_TIME} Log files truncated" >> ${THIS_SCRIPT_PATH}Action.log
 
 cat <<CONTENT
 
