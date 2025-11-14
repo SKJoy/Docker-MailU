@@ -13,7 +13,7 @@ BACKUP_PATH="${THIS_SCRIPT_PATH}Backup"
 BACKUP_FILE="${BACKUP_PATH}/${CURRENT_DATE_TIME}.zip"
 
 docker compose stop
-bash ${THIS_SCRIPT_PATH}Clean-up.sh
+bash ${THIS_SCRIPT_PATH}Clean.sh
 mkdir ${BACKUP_PATH} -p
 echo "⭐ Backup in progress..."
 echo "   ⏳ Please wait"
