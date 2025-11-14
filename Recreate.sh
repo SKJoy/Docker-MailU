@@ -17,7 +17,8 @@ cat <<CONTENT
 
 ⭐ Project recreated
    ❓ Item
-      ⚡ Log files
+      ⚡ Network
+      ⚡ Containers
    ⏰ Time  : ${CURRENT_DATE} ${CURRENT_TIME}
 
 CONTENT

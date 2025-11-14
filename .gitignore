@@ -2,3 +2,4 @@ MailU.code-workspace
 .env
 SSL-Copy.sh
 SSL-Generate-Self-signed.sh
+Action.log
