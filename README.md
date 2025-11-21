@@ -69,7 +69,7 @@
 - ### Restore
 	- Ensure there is no other file or folder in the restore path `/path/to/mailu` (`Backup` folder may exist)
 	- Extract backup file: `unzip /path/to/backup.zip -d /path/to/mailu`
-	- Start the Docker stack: `docker compose up -d`
+	- Fix file permission & start **MailU**: `bash Fix-File-permission.sh` (this will also automatically start the **MailU** instance)
 
 ## Caution
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
