@@ -76,7 +76,7 @@
 	**Utility** shell scripts are located within the `CLI-API` folder. Execute the shell scripts without parameters for detailed **sysntax** instruction.
 
 	- Domain
-		- Create new: `bash Domain-create.sh new-domain.tld ALLOW_SIGNUP COMMENT`
+		- Create new: `bash Domain-create.sh new-domain.tld ALLOW_SIGNUP COMMENT` (also creates corresponding DKIM keys)
 		- Delete existing: `bash Domain-delete.sh existing-domain.tld`
 	- Email account
 		- Create new: `bash User-create.sh domain.tld user PASSWORD QUOTA_BYTES COMMENT FORWARD_EMAIL SPAM_DETECTION DISPLAY_NAME` (also creates the domain `domain.tld` if does not exist)
