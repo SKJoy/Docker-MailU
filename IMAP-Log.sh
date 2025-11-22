@@ -9,16 +9,6 @@ THIS_SCRIPT_PATH="$(dirname "$0")/"
 cd ${THIS_SCRIPT_PATH};
 
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
-source ../.env
 
-EMAIL=$1
-
-curl "${MAILU_URL}${MAILU_URL_PREFIX_API}/v1/user/${EMAIL}" -X "DELETE" -H "Authorization: ${MAILU_API_TOKEN}" -H "Content-Type: application/json" -sS
-
-cat <<CONTENT
-
-Syntax: bash User-delete.sh EMAIL
-	- EMAIL: STRING = myname@mydomain.tld
-
-CONTENT
+docker container logs mailu-imap-1 -f
 

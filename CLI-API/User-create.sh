@@ -30,7 +30,7 @@ fi
 
 bash Domain-create.sh $DOMAIN false
 
-curl -d "{\"email\": \"${USER}@${DOMAIN}\",\"raw_password\": \"${PASSWORD}\",\"quota_bytes\": ${QUOTA:-3221225472},\"comment\": \"${COMMENT:-}\",\"displayed_name\": \"${DISPLAY_NAME:-}\",\"spam_enabled\": ${SPAM_DETECTION:-false},\"forward_enabled\": ${ENABLE_FORWARD:-false},\"forward_destination${FORWARD_NODE_NAME_SUFFIX}\": [\"${FORWARD_EMAIL:-}\"],\"forward_keep\": true,\"change_pw_next_login\": false,\"allow_spoofing\": false}" "https://${HOST_NAME}${MAILU_URL_PREFIX_API}/v1/user" -X "POST" -H "Authorization: ${MAILU_API_TOKEN}" -H "Content-Type: application/json" -sS
+curl -d "{\"email\": \"${USER}@${DOMAIN}\",\"raw_password\": \"${PASSWORD}\",\"quota_bytes\": ${QUOTA:-3221225472},\"comment\": \"${COMMENT:-}\",\"displayed_name\": \"${DISPLAY_NAME:-}\",\"spam_enabled\": ${SPAM_DETECTION:-false},\"forward_enabled\": ${ENABLE_FORWARD:-false},\"forward_destination${FORWARD_NODE_NAME_SUFFIX}\": [\"${FORWARD_EMAIL:-}\"],\"forward_keep\": true,\"change_pw_next_login\": false,\"allow_spoofing\": false}" "${MAILU_URL}${MAILU_URL_PREFIX_API}/v1/user" -X "POST" -H "Authorization: ${MAILU_API_TOKEN}" -H "Content-Type: application/json" -sS
 
 cat <<CONTENT
 

@@ -13,7 +13,7 @@ source ../.env
 
 DOMAIN=$1
 
-curl "https://${HOST_NAME}${MAILU_URL_PREFIX_API}/v1/domain/${DOMAIN}" -X "DELETE" -H "Authorization: ${MAILU_API_TOKEN}" -H "Content-Type: application/json" -sS
+curl "${MAILU_URL}${MAILU_URL_PREFIX_API}/v1/domain/${DOMAIN}" -X "DELETE" -H "Authorization: ${MAILU_API_TOKEN}" -H "Content-Type: application/json" -sS
 
 cat <<CONTENT
 

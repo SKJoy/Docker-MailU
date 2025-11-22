@@ -56,6 +56,7 @@
 		- Customize `SSL_SOURCE_PATH`, `SSL_SOURCE_CERTIFICATE_FILE` and `SSL_SOURCE_KEY_FILE` values
 		- Execute shell script: `bash Sample-SSL-Copy.sh`; possibly with a daily **CronJob**
 - ### Generate self signed
+	- SSL certificate should be generated for the first hostname with the additional hostnames as ASNs
 	- Copy `Sample-SSL-Generate-Self-signed.sh` file to `SSL-Generate-Self-signed.sh`
 	- Customize `HOSTNAME` value
 	- Execute shell script: `bash SSL-Generate-Self-signed.sh`; it should have a validity of 3650 days!
