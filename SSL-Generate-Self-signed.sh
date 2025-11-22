@@ -15,7 +15,7 @@ MAILU_PATH="${THIS_SCRIPT_PATH}Volume/MailU/SSL/"
 mkdir ${MAILU_PATH} -p
 openssl req -x509 -newkey rsa:4096 -keyout ${MAILU_PATH}key.pem -out ${MAILU_PATH}cert.pem -sha256 -days 3650 -nodes -subj "/CN=${MAILU_HOSTNAME_DOMAIN}" -addext "subjectAltName=DNS:*.${MAILU_HOSTNAME_DOMAIN}"
 docker compose restart
-echo "${CURRENT_DATE} ${CURRENT_TIME} Self signed SSL generated for ${DOMAIN}" >> ${THIS_SCRIPT_PATH}Action.log
+echo "${CURRENT_DATE} ${CURRENT_TIME} Self signed SSL generated for ${MAILU_HOSTNAME_DOMAIN}" >> ${THIS_SCRIPT_PATH}Action.log
 
 cat <<CONTENT
 
