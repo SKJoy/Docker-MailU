@@ -70,6 +70,17 @@
 	- Ensure there is no other file or folder in the restore path `/path/to/mailu` (`Backup` folder may exist)
 	- Extract backup file: `unzip /path/to/backup.zip -d /path/to/mailu`
 	- Fix file permission & start **MailU**: `bash Fix-File-permission.sh` (this will also automatically start the **MailU** instance)
+- ### Command line utility
+	**MailU Web API** must be **enabled** for these to work.
+
+	**Utility** shell scripts are located within the `CLI-API` folder. Execute the shell scripts without parameters for detailed **sysntax** instruction.
+
+	- Domain
+		- Create new: `bash Domain-create.sh new-domain.tld ALLOW_SIGNUP COMMENT`
+		- Delete existing: `bash Domain-delete.sh existing-domain.tld`
+	- Email account
+		- Create new: `bash User-create.sh domain.tld user PASSWORD QUOTA_BYTES COMMENT FORWARD_EMAIL SPAM_DETECTION DISPLAY_NAME` (also creates the domain `domain.tld` if does not exist)
+		- Delete existing: `bash User-delete.sh user@domain.tld`
 
 ## Caution
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
