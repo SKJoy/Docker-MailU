@@ -1,22 +1,28 @@
 # **MailU** mail server with **Docker**
+
 **MailU** is a complete **mail server** that you can deploy with **Docker** as containers. This makes it highly **portable** and manageable. **MailU** comes with all features and functionality you can expect from any proven full grade mail server. You can deploy **MailU** on any platform/**OS** that suports Docker containers.
+
+Consider that this deployment guide generally assumes you put the **MailU** instance behind a reverse proxy like **NginX** to handle the **SSL** termination. Also the concept of **routing domain** has been followed to make this guide compatible for multiple mail server deployment strategy under the same organizational identity.
 
 ## Setup
 - ### **MailU**
 	- Clone **repository** on the server: `git clone https://github.com/SKJoy/Docker-MailU.git`
 	- #### Copy `.sample.env` file to `.env` and modify accordingly
 		- `DOCKER_NETWORK_PREFIX`: Ensure the **Docker network** doesn't conflict with any existing
-		- `HOST_NAME`: Mail server `hostname`, an **FQDN**; also responds with **SSL**
+		- **Hostname** composition
+			- `MAILU_HOSTNAME_DOMAIN`: Domain part of the hostname of the mail server like `domain.tld`
+			- `MAILU_HOSTNAME_PREFIX`: Subdomain part of the hostname of the mail server like `mail-1`
+			- These together form the **hostname** FQDN like `mail-1.domain.tld`
 		- ##### Default `administrator` user credential
 			- ###### **Email**; usually `admin@internal.system`
 				- `MAILU_ADMIN_USER`: **Username** part
 				- `MAILU_ADMIN_DOMAIN`: **Domain** part
 			- `DEFAULT_PASSWORD`: Default password
-		- `MAILU_HOSTNAMES`: Additional hostnames; usually all the `mail.domain.tld`
+		- `MAILU_HOSTNAMES`: Add additional hostnames like prefixed with `mail`, `smtp`, `imap`, `pop`, etc; **SSL** certificate should be available for these hostnames
 		- `MAILU_SECRET_KEY`: Unique `16` byte key per deployment
 		- `MAILU_API_TOKEN`: Unique `32` byte token to use with `MailU` API
 		- `MAILU_SITE_NAME`: Name of the website to show
-		- `MAILU_SITE_URL`: URL to any website
+		- `MAILU_URL`: Full URL to this **MailU** web interface
 		- `MAILU_LOGO_URL`: Custom logo URL
 		- `MAILU_LOGO_BACKGROUND_COLOR`: Background color the the custom logo
 		- `MAILU_TLS_FLAVOR`: Check detail in `.env` file
@@ -35,15 +41,15 @@
 - ### Reverse proxy
 	- **SSL** is to be handled by the reverse proxy
 	- Forward **HTTP** port to internal `MailU` container
-	- #### Configure **HTTP** proxy header to detect real IP for **CloudFlare**
+	- #### Configure **HTTP** proxy header to detect real IP for **CloudFlare** (optional)
 		- **NginX**: `real_ip_header CF-Connecting-IP;` in `/` location block
 - Start the Docker project: `docker compose up -d`
 - The **MailU** instance should be accessible through the web browser as configureed with reverse proxy or exposed directly
+
+	- **DNS** needs to be configured before the system becomes accessible
 	- #### URL
-		- `https://email.domain.tld`
-		- `http://email.domain.tld`
-		- `https://email.domain.tld:[MAILU_PORT_HTTPS]`
-		- `http://email.domain.tld:[MAILU_PORT_HTTP]`
+		- `https://webmail-mail-1.domain.tld` (with routing domain)
+		- `https://webmail.mydomain.com` (any regular domain)
 	- Use default **administrator** user credential as configured in `.env` file
 
 ## **SSL** certificate management behind reverse proxy
@@ -54,14 +60,15 @@
 	- #### Automation
 		- Copy `Sample-SSL-Copy.sh` file to `SSL-Copy.sh`
 		- Customize `SSL_SOURCE_PATH`, `SSL_SOURCE_CERTIFICATE_FILE` and `SSL_SOURCE_KEY_FILE` values
-		- Execute shell script: `bash Sample-SSL-Copy.sh`; possibly with a daily **CronJob**
+		- Execute shell script: `bash SSL-Copy.sh`; possibly with a daily **CronJob**
 - ### Generate self signed
-	- SSL certificate should be generated for the first hostname with the additional hostnames as ASNs
-	- Copy `Sample-SSL-Generate-Self-signed.sh` file to `SSL-Generate-Self-signed.sh`
-	- Customize `HOSTNAME` value
+
+	- **SSL** certificate should be generated for the first **hostname** with the additional hostnames as **ASN**
+
 	- Execute shell script: `bash SSL-Generate-Self-signed.sh`; it should have a validity of 3650 days!
-- Execute shell script: `bash SSL-Generate-Self-signed-or-Copy.sh`; if unsure of the external SSL certificate existence so a self signed certificate is always available; possibly with a daily **CronJob**
-- Restart container: `docker compose restart front`
+
+- Execute shell script: `bash SSL-Generate-Self-signed-or-Copy.sh` if unsure of the external **SSL** certificate existence so a **self signed** certificate is always available; possibly with a daily **CronJob** `0 0 * * * bash /Path/To/MailU/SSL-Generate-Self-signed-or-Copy.sh`
+- Restart container: `docker compose restart front` (using any of the above utility shell sctips restarts the container automatically)
 
 ## Task
 - Clear log file: `bash Log-Clear.sh`; possibly with a monthly **CronJob**
@@ -86,25 +93,46 @@
 ## Caution
 - Usual Docker network **subnet** `172.0.0.0/8` may result into an **open relay**
 - `SSO`/`Identity server` configuration (**Keycloak**, **Authentik**, etc) is cumbersome due to lack of built in support (needs to be configured through **HTTP** reverse proxy)
-- Use mail server **hostname** (`mail-server.domain.tld`) instead of `mail.domain.tld` if SSL connection fails for mail services (IMAP, POP & SMTP)
+- Use mail server **hostname** (`mail-1.domain.tld`) instead of `mail.domain.tld` if SSL connection fails for mail services (IMAP, POP & SMTP)
 
 ## **DNS** configuration
-- Assuming **email domain** is `domain.tld`
-- Basic
-	- Type: `A`; Name: `mail`; Value: **Host public IP**; Proxy: `No` (can use `CNAME` with `target hostname` alternatively)
-	- Type: `MX`; Name: `@`; Value: `mail.domain.tld` (for incoming email)
-- Security
-	- Type: `TXT`; Name: `@`; Value: `v=spf1 +mx +a -all` (tightest)
-	- Type: `TXT`; Name: `default._domainkey`; Value: `v=DKIM1; k=rsa; p=[GET FROM MAILU DOMAIN ADMIN INTERFACE];`
-	- Type: `TXT`; Name: `_dmarc`; Value: `v=DMARC1; p=reject;` (tightest)
-- **MailU** web interface
-	- Type: `CNAME`; Name: `email`; Value: `mail.domain.tld`; Proxy: `Yes`
-- **Email client** automatic configuration
-	- Type: `CNAME`; Name: `imap`; Value: `mail.domain.tld`; Proxy: `No`
-	- Type: `CNAME`; Name: `pop`; Value: `mail.domain.tld`; Proxy: `No`
-	- Type: `CNAME`; Name: `smtp`; Value: `mail.domain.tld`; Proxy: `No`
-	- Type: `CNAME`; Name: `autoconfig`; Value: `mail.domain.tld`; Proxy: `Yes`
-	- Type: `CNAME`; Name: `autodiscover`; Value: `autoconfig.domain.tld`; Proxy: `Yes`
+- ### Routing domain: `domain.tld`
+	- Basic
+		- Type: `A`; Name: `mail-1`; Value: **Host public IP**; Proxy: `No`
+		- Type: `CNAME`; Name: `webmail-mail-1`; Value: `mail-1.domain.tld`; Proxy: `Yes`
+	- Additionally all the **DNS** records applicable for regular domain
+- ### Regular domain: `mydomain.com`
+	- Basic
+		- Type: `CNAME`; Name: `mail`; Value: `mail-1.domain.tld`; Proxy: `No`
+		- Type: `CNAME`; Name: `webmail`; Value: `mail.mydomain.com`; Proxy: `Yes`
+		- Type: `MX`; Name: `@`; Value: `mail.mydomain.com` (for incoming email)
+	- Security
+		- Type: `TXT`; Name: `@`; Value: `v=spf1 +mx +a -all` (tightest)
+		- Type: `TXT`; Name: `default._domainkey`; Value: `v=DKIM1; k=rsa; p=[DKIM PUBLIC KEY];` (Get this key from within the **MailU** admin panel)
+		- Type: `TXT`; Name: `_dmarc`; Value: `v=DMARC1; p=reject;` (tightest)
+	- **Email client** automatic configuration
+		- Type: `CNAME`; Name: `imap`; Value: `mail.mydomain.com`; Proxy: `No`
+		- Type: `CNAME`; Name: `pop`; Value: `mail.mydomain.com`; Proxy: `No`
+		- Type: `CNAME`; Name: `smtp`; Value: `mail.mydomain.com`; Proxy: `No`
+		- Type: `CNAME`; Name: `autoconfig`; Value: `mail.mydomain.com`; Proxy: `Yes`
+		- Type: `CNAME`; Name: `autodiscover`; Value: `autoconfig.mydomain.com`; Proxy: `Yes`
+
+## Email client configuration
+
+- ### Host
+	- `mail.mydomain.com` (ignore **SSL** verification with ports)
+	- `mail-1.domain.tld` (for explicit secure connection)
+- ### Port
+	- **IMAP**: Secure: `993` with `SSL`; Insecure: `143`
+	- **POP**: Secure: `995` with `SSL`; Insecure: `110`
+	- **SMTP**: Secure: `465` with `SSL`; Secure: `587` with `TLS`; Insecure: `25`
+
+- **Password**: As defined when created the user in **MailU** system
+- **User**: Full email address like `myname@mydomain.com`
+
+- ### Webmail
+	- `https://webmail.mydomain.com`
+	- `https://webmail-mail-1.domain.tld`
 
 ## **How to** check functionality
 - Check for **DNS** configuration with [**MX ToolBox**](https://mxtoolbox.com/)
