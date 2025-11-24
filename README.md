@@ -41,8 +41,12 @@ Consider that this deployment guide generally assumes you put the **MailU** inst
 - ### Reverse proxy
 	- **SSL** is to be handled by the reverse proxy
 	- Forward **HTTP** port to internal `MailU` container
-	- #### Configure **HTTP** proxy header to detect real IP for **CloudFlare** (optional)
-		- **NginX**: `real_ip_header CF-Connecting-IP;` in `/` location block
+	- #### Detect real IP from origin proxy like **CloudFlare** (optional)
+		- **NginX**
+			```
+			#real_ip_header CF-Connecting-IP;
+			real_ip_header X-Forwarded-For;
+			```
 - Start the Docker project: `docker compose up -d`
 - The **MailU** instance should be accessible through the web browser as configureed with reverse proxy or exposed directly
 
