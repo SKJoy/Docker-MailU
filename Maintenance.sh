@@ -9,14 +9,16 @@ THIS_SCRIPT_PATH="$(dirname "$0")/"
 cd ${THIS_SCRIPT_PATH};
 
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
+# bash Log-Clear.sh
 bash SSL-Copy.sh
 
 DAY_OF_MONTH=$(date +%d);
 WEEK_RESULT=$((DAY_OF_MONTH % 7));
 
 if [[ "${WEEK_RESULT}" == 0 ]]; then
-	ACTION="Weekly backup"
+	ACTION="Weekly backup and prune"
 	bash Backup.sh
+	bash Backup-Prune.sh
 else
 	ACTION="Daily restart with SSL copy"
 	bash Recreate.sh
