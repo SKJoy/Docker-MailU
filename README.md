@@ -75,6 +75,12 @@ Consider that this deployment guide generally assumes you put the **MailU** inst
 - Restart container: `docker compose restart front` (using any of the above utility shell sctips restarts the container automatically)
 
 ## Task
+- ### Automation **CronJob** (daily): `0 0 * * * bash /Path/To/MailU/Maintenance.sh`
+	- Copies **SSL certificate** from origin
+	- Recreates the **Docker** stack to mitigate possible network issues
+	- Creates **weekly backup**
+	- Prunes older **backup**
+	- Other *clean up* jobs
 - Clear log file: `bash Log-Clear.sh`; possibly with a monthly **CronJob**
 - Clean up everything (doesn't remove any mail server data): `bash Clean.sh`; possibly with a monthly **CronJob**
 - Backup: `bash Backup.sh`; Backup file should be available inside the `Backup` folder
