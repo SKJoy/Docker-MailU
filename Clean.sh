@@ -10,13 +10,18 @@ cd ${THIS_SCRIPT_PATH};
 
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
 bash ${THIS_SCRIPT_PATH}Log-Clear.sh
-echo "${CURRENT_DATE} ${CURRENT_TIME} Docker project data cleaned up" >> ${THIS_SCRIPT_PATH}Action.log
+bash Backup-Prune.sh
+# Other clean up job
+# Other clean up job
+
+echo "${CURRENT_DATE} ${CURRENT_TIME} System cleaned up" >> ${THIS_SCRIPT_PATH}Action.log
 
 cat <<CONTENT
 
 ⭐ Clean up complete
-   ❓ Item
-      ⚡ Log files
+   ✅ Clear log
+   ✅ Prune old backup
+   ❓ Path		: '${THIS_SCRIPT_PATH}'
    ⏰ Time  : ${CURRENT_DATE} ${CURRENT_TIME}
 
 CONTENT

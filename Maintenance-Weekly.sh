@@ -11,7 +11,6 @@ cd ${THIS_SCRIPT_PATH};
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
 bash Maintenance-Daily.sh
 bash Backup.sh
-bash Backup-Prune.sh
 
 echo "${CURRENT_DATE} ${CURRENT_TIME} Weekly maintenance task completed" >> ${THIS_SCRIPT_PATH}Action.log
 
