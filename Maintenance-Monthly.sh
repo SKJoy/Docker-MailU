@@ -9,6 +9,7 @@ THIS_SCRIPT_PATH="$(dirname "$0")/"
 cd ${THIS_SCRIPT_PATH};
 
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
+bash Maintenance-Weekly.sh
 bash Log-Clear.sh
 
 echo "${CURRENT_DATE} ${CURRENT_TIME} Monthly maintenance task completed" >> ${THIS_SCRIPT_PATH}Action.log

@@ -9,6 +9,7 @@ THIS_SCRIPT_PATH="$(dirname "$0")/"
 cd ${THIS_SCRIPT_PATH};
 
 # EVERYTHING BELOW IS AUTOMATED; DO NOT CHANGE
+bash Maintenance-Daily.sh
 bash Backup.sh
 bash Backup-Prune.sh
 
