@@ -13,7 +13,7 @@ bash Maintenance-Daily.sh
 
 DAY_OF_MONTH=$(date +%d);
 WEEK_RESULT=$((DAY_OF_MONTH % 7));
-MONTH_RESULT=$((DAY_OF_MONTH % 7));
+MONTH_RESULT=$((DAY_OF_MONTH % 28));
 
 if [[ "${MONTH_RESULT}" == 0 ]]; then
 	ACTION="Monthly"
