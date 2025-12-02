@@ -20,7 +20,7 @@ cat <<CONTENT
 
 ⭐ Prune old backup
    ❓ Age		: ${BACKUP_AGE_DAY} day
-   ❓ Path		: '${THIS_SCRIPT_PATH}/${BACKUP_PATH}/*.${BACKUP_EXTENSION}'
+   ❓ Path		: '${THIS_SCRIPT_PATH}${BACKUP_PATH}/*.${BACKUP_EXTENSION}'
    ⏰ Time		: ${CURRENT_DATE} ${CURRENT_TIME}
 
 CONTENT
