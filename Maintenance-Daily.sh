@@ -17,8 +17,8 @@ echo "${CURRENT_DATE} ${CURRENT_TIME} Daily maintenance task completed" >> ${THI
 cat <<CONTENT
 
 ⭐ Daily maintenance task
-   ❓ Copy SSL certificate
-   ❓ Recreate Docker stack
+   ✅ Copy SSL certificate
+   ✅ Recreate Docker stack
    ❓ Path		: '${THIS_SCRIPT_PATH}'
    ⏰ Time		: ${CURRENT_DATE} ${CURRENT_TIME}
 

@@ -17,7 +17,7 @@ echo "${CURRENT_DATE} ${CURRENT_TIME} Monthly maintenance task completed" >> ${T
 cat <<CONTENT
 
 ⭐ Monthly maintenance task
-   ❓ Clear log
+   ✅ Clear log
    ❓ Path		: '${THIS_SCRIPT_PATH}'
    ⏰ Time		: ${CURRENT_DATE} ${CURRENT_TIME}
 

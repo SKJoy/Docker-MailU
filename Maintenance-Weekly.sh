@@ -18,8 +18,8 @@ echo "${CURRENT_DATE} ${CURRENT_TIME} Weekly maintenance task completed" >> ${TH
 cat <<CONTENT
 
 ⭐ Weekly maintenance task
-   ❓ Backup
-   ❓ Backup prune
+   ✅ Backup
+   ✅ Backup prune
    ❓ Path		: '${THIS_SCRIPT_PATH}'
    ⏰ Time		: ${CURRENT_DATE} ${CURRENT_TIME}
 
